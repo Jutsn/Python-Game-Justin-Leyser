@@ -1,27 +1,47 @@
 import pygame
 from Projectiles import ProjectileManager
 
-class PlayerController(): 
+class PlayerController():
+
 	def __init__(self):
 		self.position = pygame.Vector2(400, 300)
-
+	
 	def update(self):
-		keys = pygame.key.get_pressed()
-		if keys[pygame.K_a]: self.position.x -= 5
-		if keys[pygame.K_d]: self.position.x += 5
-		if keys[pygame.K_w]: self.position.y -= 5
-		if keys[pygame.K_s]: self.position.y += 5
-		if self.position.y <= 300: 
-			self.position.y = 300
-		if self.position.y >= 550:
-			self.position.y = 550
-
-		if keys[pygame.K_SPACE]:
-			ProjectileManager.register_player_bullet(self.position)
+		self.get_input()
+		self.clamp_player_pos()
 
 	def draw(self, screen):
 		pygame.draw.rect(screen, (255, 107, 53), (self.position.x, self.position.y , 40, 40))
 
 
-	
-		
+	def get_input(self):
+		keys = pygame.key.get_pressed()
+
+		if keys[pygame.K_a]: self.move_left()
+		if keys[pygame.K_d]: self.move_right()
+		if keys[pygame.K_w]: self.move_up()
+		if keys[pygame.K_s]: self.move_down()
+		if keys[pygame.K_SPACE]: self.shoot()
+
+	def clamp_player_pos(self):
+		if self.position.y <= 300: 
+			self.position.y = 300
+		if self.position.y >= 550:
+			self.position.y = 550
+		if self.position.x <= 10: 
+			self.position.x = 10
+		if self.position.x >= 750: 
+			self.position.x = 750
+
+
+	def move_left(self):
+		self.position.x -= 5
+	def move_right(self):
+		self.position.x += 5
+	def move_up(self):
+		self.position.y -= 5
+	def move_down(self):
+		self.position.y += 5
+
+	def shoot(self):
+		ProjectileManager.register_player_bullet(self.position)
