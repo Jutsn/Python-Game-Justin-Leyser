@@ -9,6 +9,8 @@ class ProjectileManager():
 	def update_bullets():
 		for bullet in bullets:
 			bullet.update()
+			if bullet.position.y <= 100: 
+				bullets.remove(bullet)
 
 	def draw_bullets(screen):
 		for bullet in bullets:
@@ -21,6 +23,6 @@ class Bullet():
 
 	def update(self):
 		self.position.y -= 3;
-
+		
 	def draw(self, screen):
 		pygame.draw.rect(screen, (0, 255, 0), (self.position.x, self.position.y, 10, 10))
