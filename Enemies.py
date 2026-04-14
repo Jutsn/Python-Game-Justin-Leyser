@@ -1,13 +1,28 @@
 import pygame
 from Projectiles import Bullet 
+enemies = []
 
+class EnemyManager:
+
+	def register_enemy():
+		enemy_pos = pygame.Vector2(400, 50)
+		enemies.append(Enemy(enemy_pos))
+
+	def update_enemies():
+		for enemy in enemies:
+			enemy.update()
+			if enemy.alive == False: 
+				enemies.remove(enemy)
+
+	def draw_enemies(screen):
+		for enemy in enemies:
+			enemy.draw(screen)
 
 
 class Enemy():
-	collided = False
-
-	def __init__(self):
-		self.position = pygame.Vector2(400, 300)
+#EngineStuff
+	def __init__(self, enemy_pos):
+		self.position = enemy_pos
 		self.rect = pygame.Rect(self.position.x, self.position.y , 40, 40)
 		self.alive = True
 		#self.last_shot_time = 0
@@ -18,8 +33,7 @@ class Enemy():
 		self.rect.topleft = self.position
 
 	def draw(self, screen):
-		if self.alive:
-			pygame.draw.rect(screen, (255, 107, 53), self.rect)
+		pygame.draw.rect(screen, (255, 107, 53), self.rect)
 
 #input
 	def input(self):

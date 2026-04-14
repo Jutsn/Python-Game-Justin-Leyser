@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Projectiles.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Projectiles.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Enemy.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Enemy.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Player.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Player.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\CollisionManager.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CollisionManager.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\main.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:main.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Enemies.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Enemies.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Projectiles.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Projectiles.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\ScoreManager.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ScoreManager.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Player.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Player.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,56 +34,85 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Enemy.py",
-              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Enemy.py",
-              "RelativeDocumentMoniker": "Enemy.py",
-              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Enemy.py",
-              "RelativeToolTip": "Enemy.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Enemies.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Enemies.py",
+              "RelativeDocumentMoniker": "Enemies.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Enemies.py",
+              "RelativeToolTip": "Enemies.py",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-04-11T11:52:18.856Z"
+              "WhenOpened": "2026-04-11T11:52:18.856Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "main.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\main.py",
+              "RelativeDocumentMoniker": "main.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\main.py",
+              "RelativeToolTip": "main.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-11T11:11:49.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Projectiles.py",
               "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Projectiles.py",
               "RelativeDocumentMoniker": "Projectiles.py",
               "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Projectiles.py",
               "RelativeToolTip": "Projectiles.py",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAAAEAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2026-04-11T11:12:52.369Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
+              "Title": "ScoreManager.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\ScoreManager.py",
+              "RelativeDocumentMoniker": "ScoreManager.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\ScoreManager.py",
+              "RelativeToolTip": "ScoreManager.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-14T18:39:02.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CollisionManager.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\CollisionManager.py",
+              "RelativeDocumentMoniker": "CollisionManager.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\CollisionManager.py",
+              "RelativeToolTip": "CollisionManager.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-14T17:29:02.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Player.py",
               "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Player.py",
               "RelativeDocumentMoniker": "Player.py",
               "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Player.py",
               "RelativeToolTip": "Player.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-04-11T11:12:14.444Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "main.py",
-              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\main.py",
-              "RelativeDocumentMoniker": "main.py",
-              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\main.py",
-              "RelativeToolTip": "main.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-04-11T11:11:49.489Z"
+              "WhenOpened": "2026-04-11T11:12:14.444Z",
+              "EditorCaption": ""
             }
           ]
         }

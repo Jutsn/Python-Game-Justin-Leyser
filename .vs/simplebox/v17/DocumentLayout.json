@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\CollisionSystem.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CollisionSystem.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\CollisionManager.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CollisionManager.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\main.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -19,6 +19,10 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Projectiles.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\ScoreManager.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ScoreManager.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Player.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Player.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
@@ -30,21 +34,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CollisionSystem.py",
-              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\CollisionSystem.py",
-              "RelativeDocumentMoniker": "CollisionSystem.py",
-              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\CollisionSystem.py",
-              "RelativeToolTip": "CollisionSystem.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-04-14T17:29:02.747Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -53,35 +44,9 @@
               "RelativeDocumentMoniker": "Enemies.py",
               "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Enemies.py",
               "RelativeToolTip": "Enemies.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2026-04-11T11:52:18.856Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Projectiles.py",
-              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Projectiles.py",
-              "RelativeDocumentMoniker": "Projectiles.py",
-              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Projectiles.py",
-              "RelativeToolTip": "Projectiles.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-04-11T11:12:52.369Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Player.py",
-              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Player.py",
-              "RelativeDocumentMoniker": "Player.py",
-              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Player.py",
-              "RelativeToolTip": "Player.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-04-11T11:12:14.444Z",
               "EditorCaption": ""
             },
             {
@@ -92,9 +57,61 @@
               "RelativeDocumentMoniker": "main.py",
               "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\main.py",
               "RelativeToolTip": "main.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2026-04-11T11:11:49.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Projectiles.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Projectiles.py",
+              "RelativeDocumentMoniker": "Projectiles.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Projectiles.py",
+              "RelativeToolTip": "Projectiles.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-11T11:12:52.369Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ScoreManager.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\ScoreManager.py",
+              "RelativeDocumentMoniker": "ScoreManager.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\ScoreManager.py",
+              "RelativeToolTip": "ScoreManager.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-14T18:39:02.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CollisionManager.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\CollisionManager.py",
+              "RelativeDocumentMoniker": "CollisionManager.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\CollisionManager.py",
+              "RelativeToolTip": "CollisionManager.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-14T17:29:02.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Player.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Player.py",
+              "RelativeDocumentMoniker": "Player.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\simplebox\\Player.py",
+              "RelativeToolTip": "Player.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-11T11:12:14.444Z",
               "EditorCaption": ""
             }
           ]
