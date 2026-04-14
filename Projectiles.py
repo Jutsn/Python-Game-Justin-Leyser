@@ -9,7 +9,7 @@ class ProjectileManager():
 	def update_bullets():
 		for bullet in bullets:
 			bullet.update()
-			if bullet.position.y <= 100: 
+			if bullet.position.y <= 10: 
 				bullets.remove(bullet)
 
 	def draw_bullets(screen):
