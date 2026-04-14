@@ -18,11 +18,14 @@ class ProjectileManager():
 
 
 class Bullet(): 
+
 	def __init__(self, player_position):
 		self.position = pygame.Vector2(player_position.x + 15, player_position.y)
+		self.rect = pygame.Rect(self.position.x, self.position.y, 10, 10)
 
 	def update(self):
 		self.position.y -= 3;
+		self.rect.topleft = self.position
 		
 	def draw(self, screen):
-		pygame.draw.rect(screen, (0, 255, 0), (self.position.x, self.position.y, 10, 10))
+		bullet = pygame.draw.rect(screen, (0, 255, 0), self.rect)
