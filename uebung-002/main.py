@@ -12,6 +12,7 @@ CIRCLE_COL = (200, 200, 255)
 TEXT_COL = (255, 255, 255)
 
 # ---- pygame starten ----
+pygame.mixer.init() 
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Jump & Run")
@@ -28,13 +29,17 @@ player_moving_left = False
 player_moving_right = False
 player_jumping = False
 player_movement_y = 0.0
-player_jump_power = 5
-
+player_jump_power = 4.5
+jumping_sound = pygame.mixer.Sound(r"D:\Games Programming\Python Game Justin Leyser\sounds\jump.wav")
+jumping_sound.set_volume(1.0)
 
 # ---- Bouncing circle (aus dem "Boing boing"-Beispiel) ----
 circle_x = 300.0
 circle_y = 50.0
-circle_radius = 10
+circle_sprite_radius = 10
+circle_col_width = circle_sprite_radius * 2
+circle_col_height = circle_sprite_radius * 2
+circle_col = pygame.Rect(circle_x, circle_y, circle_col_width, circle_col_height)
 circle_movement_x = 1.0
 circle_movement_y = 0.0
 gravity = 0.1
@@ -54,19 +59,22 @@ obstacles.append(platform_1)
 # ---- Status-Text ----
 status = "Wheee!"
 
-# Player: Collisions-Check 
-def Check_For_Player_Collision(rect):
+#pygame.mixer.find_channel()¶
+# Player: Collisions-Check
+def check_for_player_collision(rect):
     if player.colliderect(rect):
         return True
     else:
         return False
 
+
 # Player: Clamping auf X-Achse
-def Clamp_player_pos():
-    if player.x <= 5: 
-	    player.x = 5
-    if player.x >= SCREEN_WIDTH - player_col_width - 5: 
-	    player.x = SCREEN_WIDTH - player_col_width - 5
+def clamp_player_pos():
+    if player.x <= 5:
+        player.x = 5
+    if player.x >= SCREEN_WIDTH - player_col_width - 5:
+        player.x = SCREEN_WIDTH - player_col_width - 5
+
 
 # ============================================================
 # Game Loop
@@ -75,7 +83,7 @@ def Clamp_player_pos():
 running = True
 while running:
 
-    # ---- Events ----
+   # ---- Events ----
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -85,10 +93,11 @@ while running:
                 player_moving_left = True
             elif event.key == pygame.K_d:
                 player_moving_right = True
-
+           # Player: Springen        
             if event.key == pygame.K_w and is_grounded or event.key == pygame.K_SPACE and is_grounded:
-                player_movement_y = -player_jump_power 
+                player_movement_y = -player_jump_power
                 is_grounded = False
+                jumping_sound.play()
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a:
@@ -96,67 +105,76 @@ while running:
             elif event.key == pygame.K_d:
                 player_moving_right = False
 
-        
-
-    # ---- Update ----
-    # Player: Bewegung + Gravitation
+  # ---- Update ----
+   # Player: Bewegung
     if player_moving_right:
         player.x += 3
     elif player_moving_left:
         player.x -= 3
 
+   # Player: Horizontale Kollisionen
+    for obs in obstacles:
+        if check_for_player_collision(obs):
+            if player_moving_right:
+                player.right = obs.left
+            elif player_moving_left:
+                player.left = obs.right
+   # Player: Horizontales Clamping
+    clamp_player_pos()
+
+   # Player: Gravitation
     player_movement_y += gravity
     player.y += player_movement_y
-       
 
-    # Player: An den Seiten stoppen
-    Clamp_player_pos()
-
-    # Player: Mit Hindernissen kollidieren 
+   # Player: Vertikale Kollisionen
     for obs in obstacles:
-        if (Check_For_Player_Collision(obs)):
-            if (player.bottom - obs.top <= 10):
+        if check_for_player_collision(obs):
+            if player_movement_y > 0:
                 player.bottom = obs.top
                 is_grounded = True
                 player_movement_y = 0
-            elif (player.bottom - obs.top >= 10):
-                player_movement_y = 0.1
-        
 
-    # Bouncing circle: Gravitation + Bewegung
+            elif player_movement_y < 0:
+                player.top = obs.bottom
+                player_movement_y = 0
+
+   # Player: Kollision mit Circle
+    if check_for_player_collision(circle_col):
+        status = "Ouch!"
+
+   # Bouncing circle: Gravitation + Bewegung
     circle_movement_y += gravity
-    circle_x += circle_movement_x
-    circle_y += circle_movement_y
+    circle_col.x += circle_movement_x
+    circle_col.y += circle_movement_y
 
-    # Bouncing circle: Am Boden abprallen
-    if circle_y >= SCREEN_HEIGHT - 20 - circle_radius:
+   # Bouncing circle: Am Boden abprallen
+    if circle_col.y >= SCREEN_HEIGHT - 20 - circle_sprite_radius:
         circle_movement_y = -circle_movement_y
 
-    # Bouncing circle: An den Seiten abprallen
-    if circle_x <= circle_radius or circle_x >= SCREEN_WIDTH - circle_radius:
+   # Bouncing circle: An den Seiten abprallen
+    if circle_col.x <= circle_col_width or circle_col.x >= SCREEN_WIDTH - circle_col_width:
         circle_movement_x = -circle_movement_x
 
-    # ---- Draw ----
+   # ---- Draw ----
     screen.fill(BACKGROUND_COL)
 
-    # Obstacles zeichnen
+   # Obstacles zeichnen
     for obs in obstacles:
         pygame.draw.rect(screen, GROUND_COL, obs)
 
-    # Bouncing circle zeichnen
-    pygame.draw.circle(screen, CIRCLE_COL, (int(circle_x), int(circle_y)), circle_radius)
+   # Bouncing circle zeichnen
+    pygame.draw.circle(screen, CIRCLE_COL, circle_col.center, circle_sprite_radius)
 
-    # Player zeichnen
+   # Player zeichnen
     pygame.draw.circle(screen, PLAYER_COL, player.center, player_sprite_radius)
 
-    # Text zeichnen
+   # Text zeichnen
     font = pygame.font.SysFont(None, 24)
     text_surface = font.render(status, True, TEXT_COL)
     screen.blit(text_surface, (30, 30))
 
-    # ---- Flip ----
+   # ---- Flip ----
     pygame.display.flip()
     clock.tick(60)
 
 pygame.quit()
-
