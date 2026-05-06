@@ -1,4 +1,6 @@
 import pygame
+import RedBallManager
+import CollisionManager
 
 # ---- Bildschirm ----
 SCREEN_WIDTH = 600
@@ -14,6 +16,8 @@ TEXT_COL = (255, 255, 255)
 # ---- pygame starten ----
 pygame.mixer.init() 
 pygame.init()
+rbm = RedBallManager
+cM = CollisionManager
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Jump & Run")
 clock = pygame.time.Clock()
@@ -32,6 +36,8 @@ player_movement_y = 0.0
 player_jump_power = 4.5
 jumping_sound = pygame.mixer.Sound(r"D:\Games Programming\Python Game Justin Leyser\sounds\jump.wav")
 jumping_sound.set_volume(1.0)
+player_sprite = pygame.image.load(r"D:\Games Programming\Python Game Justin Leyser\sprites\sprite_40.png")
+image = pygame.Surface([32, 32])
 
 # ---- Bouncing circle (aus dem "Boing boing"-Beispiel) ----
 circle_x = 300.0
@@ -44,6 +50,7 @@ circle_movement_x = 1.0
 circle_movement_y = 0.0
 gravity = 0.1
 
+
 # ---- Obstacles (Boden + Plattformen) ----
 # Jedes Obstacle ist ein pygame.Rect(x, y, breite, hoehe)
 obstacles = []
@@ -55,11 +62,28 @@ obstacles.append(ground)
 # Plattform 001
 platform_1 = pygame.Rect(200, SCREEN_HEIGHT - 60, 200, 10)
 obstacles.append(platform_1)
+# Plattform 002
+platform_2 = pygame.Rect(30, SCREEN_HEIGHT - 220, 100, 10)
+obstacles.append(platform_2)
+# Plattform 003
+platform_3 = pygame.Rect(100, SCREEN_HEIGHT - 140, 100, 10)
+obstacles.append(platform_3)
+# Plattform 004
+platform_4 = pygame.Rect(400, SCREEN_HEIGHT - 140, 100, 10)
+obstacles.append(platform_4)
+# Plattform 005
+platform_5 = pygame.Rect(470, SCREEN_HEIGHT - 220, 100, 10)
+obstacles.append(platform_5)
 
 # ---- Status-Text ----
 status = "Wheee!"
+count = 0
+score = "Score:"
 
-#pygame.mixer.find_channel()¶
+# ---- Game-Timer ----
+game_time = 20
+game_over = False
+
 # Player: Collisions-Check
 def check_for_player_collision(rect):
     if player.colliderect(rect):
@@ -80,8 +104,15 @@ def clamp_player_pos():
 # Game Loop
 # ============================================================
 
+
 running = True
+rbm.register_red_ball()
 while running:
+
+    if pygame.time.get_ticks()/1000 >= game_time:
+        game_over = True
+        
+    
 
    # ---- Events ----
     for event in pygame.event.get():
@@ -104,57 +135,67 @@ while running:
                 player_moving_left = False
             elif event.key == pygame.K_d:
                 player_moving_right = False
+    if not game_over:
+      # ---- Update ----
+       # Player: Bewegung
+        if player_moving_right:
+            player.x += 3
+        elif player_moving_left:
+            player.x -= 3
 
-  # ---- Update ----
-   # Player: Bewegung
-    if player_moving_right:
-        player.x += 3
-    elif player_moving_left:
-        player.x -= 3
+       # Player: Horizontale Kollisionen
+        for obs in obstacles:
+            if check_for_player_collision(obs):
+                if player_moving_right:
+                    player.right = obs.left
+                elif player_moving_left:
+                    player.left = obs.right
+       # Player: Horizontales Clamping
+        clamp_player_pos()
 
-   # Player: Horizontale Kollisionen
-    for obs in obstacles:
-        if check_for_player_collision(obs):
-            if player_moving_right:
-                player.right = obs.left
-            elif player_moving_left:
-                player.left = obs.right
-   # Player: Horizontales Clamping
-    clamp_player_pos()
+       # Player: Gravitation
+        player_movement_y += gravity
+        player.y += player_movement_y
 
-   # Player: Gravitation
-    player_movement_y += gravity
-    player.y += player_movement_y
+       # Player: Vertikale Kollisionen
+        for obs in obstacles:
+            if check_for_player_collision(obs):
+                if player_movement_y > 0:
+                    player.bottom = obs.top
+                    is_grounded = True
+                    player_movement_y = 0
 
-   # Player: Vertikale Kollisionen
-    for obs in obstacles:
-        if check_for_player_collision(obs):
-            if player_movement_y > 0:
-                player.bottom = obs.top
-                is_grounded = True
-                player_movement_y = 0
+                elif player_movement_y < 0:
+                    player.top = obs.bottom
+                    player_movement_y = 0
 
-            elif player_movement_y < 0:
-                player.top = obs.bottom
-                player_movement_y = 0
+       # Player: Kollision mit Circle
+        if check_for_player_collision(circle_col):
+            status = "Ouch!"
 
-   # Player: Kollision mit Circle
-    if check_for_player_collision(circle_col):
-        status = "Ouch!"
+       # Player: Kollision mit Red Balls
+        for ball in rbm.balls:
+            if check_for_player_collision(ball):
+                count += 1
+                ball.die()
+    
+       # Red Balls
+        rbm.update_red_balls()
+        cM.handle_red_ball_collisions(obstacles)  
 
-   # Bouncing circle: Gravitation + Bewegung
-    circle_movement_y += gravity
-    circle_col.x += circle_movement_x
-    circle_col.y += circle_movement_y
+       # Bouncing circle: Gravitation + Bewegung
+        circle_movement_y += gravity
+        circle_col.x += circle_movement_x
+        circle_col.y += circle_movement_y
 
-   # Bouncing circle: Am Boden abprallen
-    if circle_col.y >= SCREEN_HEIGHT - 20 - circle_sprite_radius:
-        circle_movement_y = -circle_movement_y
+       # Bouncing circle: Am Boden abprallen
+        if circle_col.y >= SCREEN_HEIGHT - 20 - circle_sprite_radius:
+            circle_movement_y = -circle_movement_y
 
-   # Bouncing circle: An den Seiten abprallen
-    if circle_col.x <= circle_col_width or circle_col.x >= SCREEN_WIDTH - circle_col_width:
-        circle_movement_x = -circle_movement_x
-
+       # Bouncing circle: An den Seiten abprallen
+        if circle_col.x <= circle_col_width or circle_col.x >= SCREEN_WIDTH - circle_col_width:
+            circle_movement_x = -circle_movement_x
+    
    # ---- Draw ----
     screen.fill(BACKGROUND_COL)
 
@@ -165,13 +206,23 @@ while running:
    # Bouncing circle zeichnen
     pygame.draw.circle(screen, CIRCLE_COL, circle_col.center, circle_sprite_radius)
 
+    rbm.draw_red_balls(screen)     
+
    # Player zeichnen
-    pygame.draw.circle(screen, PLAYER_COL, player.center, player_sprite_radius)
+    screen.blit(player_sprite, player.topleft)
 
    # Text zeichnen
     font = pygame.font.SysFont(None, 24)
-    text_surface = font.render(status, True, TEXT_COL)
-    screen.blit(text_surface, (30, 30))
+    status_surface = font.render(status, True, TEXT_COL)
+    count_surface = font.render(str(count), True, TEXT_COL)
+    screen.blit(status_surface, (30, 30))
+    screen.blit(count_surface, (540, 30))
+
+    if game_over:
+        score = "Score: " + str(count)
+        font = pygame.font.SysFont(None, 48)
+        score_surface = font.render(score, True, TEXT_COL)
+        screen.blit(score_surface, (240, 150))
 
    # ---- Flip ----
     pygame.display.flip()

@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\simplebox",
     "\\uebung-002"
   ],
-  "SelectedNode": "\\uebung-001",
+  "SelectedNode": "\\uebung-002\\CollisionManager.py",
   "PreviewInSolutionExplorer": false
 }
