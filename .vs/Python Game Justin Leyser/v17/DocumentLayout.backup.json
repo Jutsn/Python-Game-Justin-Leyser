@@ -3,16 +3,36 @@
   "WorkspaceRootPath": "D:\\Games Programming\\Python Game Justin Leyser\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\uebung-002\\main.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:uebung-002\\main.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\UIManager.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:uebung-003\\UIManager.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\uebung-002\\CollisionManager.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:uebung-002\\CollisionManager.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\main.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:uebung-003\\main.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\uebung-002\\RedBall.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:uebung-002\\RedBall.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\uebung-002\\RedBallManager.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:uebung-002\\RedBallManager.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\entity.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:uebung-003\\entity.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\player.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:uebung-003\\player.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\level.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:uebung-003\\level.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\obstacle.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:uebung-003\\obstacle.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,41 +50,112 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "main.py",
-              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-002\\main.py",
-              "RelativeDocumentMoniker": "uebung-002\\main.py",
-              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-002\\main.py",
-              "RelativeToolTip": "uebung-002\\main.py",
+              "DocumentIndex": 2,
+              "Title": "RedBall.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-002\\RedBall.py",
+              "RelativeDocumentMoniker": "uebung-002\\RedBall.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-002\\RedBall.py",
+              "RelativeToolTip": "uebung-002\\RedBall.py",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-05-08T14:05:25.837Z",
+              "WhenOpened": "2026-05-08T18:07:48.848Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CollisionManager.py",
-              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-002\\CollisionManager.py",
-              "RelativeDocumentMoniker": "uebung-002\\CollisionManager.py",
-              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-002\\CollisionManager.py",
-              "RelativeToolTip": "uebung-002\\CollisionManager.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "Title": "main.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\main.py",
+              "RelativeDocumentMoniker": "uebung-003\\main.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\main.py",
+              "RelativeToolTip": "uebung-003\\main.py",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAFsAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-05-08T14:01:52.374Z",
+              "WhenOpened": "2026-05-08T18:02:29.15Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "UIManager.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\UIManager.py",
+              "RelativeDocumentMoniker": "uebung-003\\UIManager.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\UIManager.py",
+              "RelativeToolTip": "uebung-003\\UIManager.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-05-08T16:47:54.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RedBallManager.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-002\\RedBallManager.py",
+              "RelativeDocumentMoniker": "uebung-002\\RedBallManager.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-002\\RedBallManager.py",
+              "RelativeToolTip": "uebung-002\\RedBallManager.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-05-08T18:07:39.314Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "level.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\level.py",
+              "RelativeDocumentMoniker": "uebung-003\\level.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\level.py",
+              "RelativeToolTip": "uebung-003\\level.py",
+              "ViewState": "AgIAABgAAAAAAAAAAAAUwD4AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-05-08T15:07:43.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "entity.py",
               "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\entity.py",
               "RelativeDocumentMoniker": "uebung-003\\entity.py",
               "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\entity.py",
               "RelativeToolTip": "uebung-003\\entity.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-05-08T14:00:58.99Z",
+              "WhenOpened": "2026-05-08T16:32:05.82Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "obstacle.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\obstacle.py",
+              "RelativeDocumentMoniker": "uebung-003\\obstacle.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\obstacle.py",
+              "RelativeToolTip": "uebung-003\\obstacle.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-05-08T14:11:08.153Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "player.py",
+              "DocumentMoniker": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\player.py",
+              "RelativeDocumentMoniker": "uebung-003\\player.py",
+              "ToolTip": "D:\\Games Programming\\Python Game Justin Leyser\\uebung-003\\player.py",
+              "RelativeToolTip": "uebung-003\\player.py",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAADUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-05-08T16:36:29.756Z",
               "EditorCaption": ""
             }
           ]

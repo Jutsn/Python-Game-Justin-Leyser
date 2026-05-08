@@ -73,7 +73,7 @@ def main():
             if (obs.rect.colliderect(player.get_rect())):
                 level.obstacles.remove(obs)
                 player.upgrade_might(1,1,1,1)
-                UIManager.show_Power_Up_UI()
+                UIManager.show_pop_up_UI("Temporary Stat Boost")
        
 
 

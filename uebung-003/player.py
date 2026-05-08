@@ -20,7 +20,9 @@ class Player(Entity):
         self.shotspd = 1    # Shot speed (pixels per frame, upward)
 
         self._cad_counter = 0   # Countdown to next shot
-
+        self.start_time = 0
+        self.power_up_time = 15
+        self.power_up_active = False
     # ------------------------------------------------------------------ #
     #  setup — place player near bottom of screen                        #
     # ------------------------------------------------------------------ #
@@ -55,6 +57,27 @@ class Player(Entity):
         self.dmg += dmg
         self.cad -= cad
         self.shotspd += shotspd
+        self.start_time = pygame.time.get_ticks()
+        self.power_up_active = True
+
+    def reset_upgrade(self, rng: int, dmg: int, cad: int, shotspd: int):
+        """Reset Upgrade stats. Called from player when timer is cleared."""
+        self.rng -= rng
+        self.dmg -= dmg
+        self.cad += cad
+        self.shotspd -= shotspd
+
+    def run_power_up_timer(self):
+        self.elapsed = (pygame.time.get_ticks() - self.start_time) / 1000
+        self.remaining = self.power_up_time - self.elapsed
+
+        if self.remaining <= 0:
+            self.power_up_active = False
+            self.reset_upgrade(5,5,5,5)
+        
+
+
+
        
 
     # ------------------------------------------------------------------ #
@@ -81,6 +104,10 @@ class Player(Entity):
 
         # Remove dead shots
         self.shots = [s for s in self.shots if s.is_alive()]
+
+        if (self.power_up_active):
+           self.run_power_up_timer()
+
 
     # ------------------------------------------------------------------ #
     #  create_shot — spawn a new shot above the player                   #
