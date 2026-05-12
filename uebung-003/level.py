@@ -67,12 +67,10 @@ class Level(Entity):
     # ------------------------------------------------------------------ #
     def step(self):
         self.pos += self.dir
-        for obs in self.obstacles:
-            obs.step()
-
         """Per-frame update. Empty in the skeleton — no scrolling or
         enemy spawning. Students implement this in Uebung 003."""
-        pass
+
+       
 
     # ------------------------------------------------------------------ #
     #  draw — render background image                                    #
@@ -145,6 +143,29 @@ class Level(Entity):
         track = int(self._parse_param(line, "T") or 0)
         position = int(self._parse_param(line, "P") or 0)
         # TODO: Students create and store Enemy objects here
+        for i in range(count):
+            enemy = Enemy()
+            enemy.setup(
+                x = 0,
+                y = 0,
+                dx = 0,
+                dy = 0,
+                image_prefix = anim_prefix,
+                anim_speed = 0,
+                hp = 1,
+                damage=damage,
+                speed=speed,
+                track=track,
+                position=position
+            )
+
+            if self.num_tracks > 0:
+                track_width = SCREEN_WIDTH // self.num_tracks
+                enemy_center_x = track_width * (track + 1)
+                enemy.pos.x = enemy_center_x - enemy.hitbox_w // 2
+                enemy.pos.y = position - (i * 100)
+
+            self.enemies.append(enemy)
 
     def _parse_obstacle_line(self, line: str):
         """Parse: O T(0) D(100) L(100) C(35,56,90) W(5)

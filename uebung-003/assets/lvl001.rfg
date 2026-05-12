@@ -45,8 +45,16 @@
 # "W": Describes the pixel width.
 
 
-L T(2) B(background.png) M(Backgnd001music) D(2000)
+L T(3) B(background.png) M(Backgnd001music) D(2000)
 
-E D(1) S(1) A(enemy) N(5) T(0) P(100)
+E D(1) S(1) A(enemyA001) N(5) T(1) P(0)
+E D(1) S(2) A(enemyA001) N(5) T(0) P(-200)
 
-O T(0) D(100) L(100) C(35,56,90) W(5)
+O T(1) D(-200) L(10) C(35,56,90) W(5)
+
+E D(1) S(1) A(enemyA001) N(5) T(2) P(-300)
+E D(1) S(2) A(enemyA001) N(5) T(1) P(-500)
+
+E D(1) S(2) A(enemyA001) N(5) T(2) P(-600)
+E D(1) S(1) A(enemyA001) N(4) T(1) P(-800)
+E D(1) S(2) A(enemyA001) N(2) T(0) P(-2200)

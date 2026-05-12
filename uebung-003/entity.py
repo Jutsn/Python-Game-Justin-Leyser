@@ -108,3 +108,8 @@ class Entity:
             except pygame.error:
                 print(f"Warning: could not load image {f}")
         return surfaces
+
+
+    def get_damage(self, damage):
+        if self.hp > 0:
+            self.hp -= damage

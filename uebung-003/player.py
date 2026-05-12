@@ -19,6 +19,11 @@ class Player(Entity):
         self.cad = 50       # Cadence: frames between shots
         self.shotspd = 1    # Shot speed (pixels per frame, upward)
 
+        self.rng_power_up = 5
+        self.dmg_power_up = 5
+        self.cad_power_up = 25
+        self.shotspd_power_up = 5
+
         self._cad_counter = 0   # Countdown to next shot
         self.start_time = 0
         self.power_up_time = 15
@@ -51,21 +56,22 @@ class Player(Entity):
         self.shotspd = shotspd
         self._cad_counter = cad
     
-    def upgrade_might(self, rng: int, dmg: int, cad: int, shotspd: int):
+    def power_up_might(self, duration):
         """Upgrade weapon stats. Called from main when collecting Obstacle."""
-        self.rng += rng
-        self.dmg += dmg
-        self.cad -= cad
-        self.shotspd += shotspd
+        self.rng += self.rng_power_up
+        self.dmg += self.dmg_power_up
+        self.cad -= self.cad_power_up
+        self.shotspd += self.shotspd_power_up
+        self.power_up_time = duration
         self.start_time = pygame.time.get_ticks()
         self.power_up_active = True
 
-    def reset_upgrade(self, rng: int, dmg: int, cad: int, shotspd: int):
+    def reset_power_up(self):
         """Reset Upgrade stats. Called from player when timer is cleared."""
-        self.rng -= rng
-        self.dmg -= dmg
-        self.cad += cad
-        self.shotspd -= shotspd
+        self.rng -= self.rng_power_up
+        self.dmg -= self.dmg_power_up
+        self.cad += self.cad_power_up
+        self.shotspd -= self.shotspd_power_up
 
     def run_power_up_timer(self):
         self.elapsed = (pygame.time.get_ticks() - self.start_time) / 1000
@@ -73,12 +79,10 @@ class Player(Entity):
 
         if self.remaining <= 0:
             self.power_up_active = False
-            self.reset_upgrade(5,5,5,5)
+            self.reset_power_up()
         
 
-
-
-       
+     
 
     # ------------------------------------------------------------------ #
     #  step — move, track mouse X, fire shots, update shots              #
@@ -105,6 +109,7 @@ class Player(Entity):
         # Remove dead shots
         self.shots = [s for s in self.shots if s.is_alive()]
 
+        # Start Power-Up Timer
         if (self.power_up_active):
            self.run_power_up_timer()
 
@@ -138,3 +143,5 @@ class Player(Entity):
             shot.draw(screen)
         # Draw player
         super().draw(screen)
+
+    
