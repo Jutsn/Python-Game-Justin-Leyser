@@ -55,6 +55,21 @@ class Player(Entity):
         self.cad = cad
         self.shotspd = shotspd
         self._cad_counter = cad
+
+    def upgrade_might(self, upgrade_type):
+        """Upgrade weapon stats. Called from ShopManager when Shopping Upgrades."""
+        if upgrade_type == "+100 Range":
+            self.rng += 100
+            print(str(self.rng))
+        if upgrade_type == "+1 Damage":
+            self.dmg += 1
+            print(str(self.dmg))
+        if upgrade_type == "+10% Fire Rate":
+            self.cad -= 5
+            print(str(self.cad))
+        if upgrade_type == "+1 Shot Speed":
+            self.shotspd += 1
+            print(str(self.shotspd))
     
     def power_up_might(self, duration):
         """Upgrade weapon stats. Called from main when collecting Obstacle."""

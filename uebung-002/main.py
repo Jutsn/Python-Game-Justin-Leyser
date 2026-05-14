@@ -77,6 +77,8 @@ obstacles.append(platform_5)
 
 # ---- Status-Text ----
 status = "Wheee!"
+show_time = 1
+show_time_stamp = 0
 count = 0
 score = "Score:"
 
@@ -172,6 +174,9 @@ while running:
        # Player: Kollision mit Circle
         if check_for_player_collision(circle_col):
             status = "Ouch!"
+            show_time_stamp = pygame.time.get_ticks()/1000
+        elif (pygame.time.get_ticks()/1000 >= show_time + show_time_stamp):
+            status = "Wheee!"
 
        # Player: Kollision mit Red Balls
         for ball in rbm.balls:

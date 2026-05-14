@@ -63,12 +63,15 @@ class Level(Entity):
                     self._parse_obstacle_line(line)
 
     # ------------------------------------------------------------------ #
-    #  step — EMPTY in skeleton (no scrolling, no enemy spawning)        #
+    #  step - scrolling
     # ------------------------------------------------------------------ #
     def step(self):
+        "Move background downwards and reset it, when it reached scrollrange"
         self.pos += self.dir
-        """Per-frame update. Empty in the skeleton — no scrolling or
-        enemy spawning. Students implement this in Uebung 003."""
+        if (self.pos.y >= SCREEN_HEIGHT):
+            self.pos.y = -self.background_image.get_height() + SCREEN_HEIGHT
+
+        
 
        
 
@@ -76,9 +79,10 @@ class Level(Entity):
     #  draw — render background image                                    #
     # ------------------------------------------------------------------ #
     def draw(self, screen: pygame.Surface):
-        """Draw the background image at the level's position."""
+        """Draw two tiles of background image over and under the level's position """
         if self.background_image:
             screen.blit(self.background_image, (int(self.pos.x), int(self.pos.y)))
+            screen.blit(self.background_image, (int(self.pos.x), int(self.pos.y - self.background_image.get_height())))
 
     # ================================================================== #
     #  Private parsing helpers                                           #
@@ -130,6 +134,7 @@ class Level(Entity):
         # Mirrors C++: pos.y = -background_image.getHeight() + SCREEN_HEIGHT
         if self.background_image:
             self.pos.y = -self.background_image.get_height() + SCREEN_HEIGHT
+         
 
     def _parse_enemy_line(self, line: str):
         """Parse: E D(1) S(1) A(enemy) N(5) T(0) P(100)

@@ -11,10 +11,13 @@
 #   - Parsed (but inactive) enemies and obstacles
 
 import pygame
+import os
 from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS, BLACK
 from player import Player
 from level import Level, Obstacle
 import UIManager
+import ScoreManager
+import ShopManager
 
 
 def main():
@@ -26,28 +29,54 @@ def main():
     pygame.display.set_caption("RealFakeGame")
     clock = pygame.time.Clock()
 
+    #Load Highscore
+    ScoreManager.load_high_score()
+
+    #define game states
+    play_state = "playing"
+    game_over_state = "game_over"
+    shop_state = "shopping"
+    game_state = play_state
+    
     # ------------------------------------------------------------------ #
     #  Setup — create player and load level (ofApp::setup)   #
     # ------------------------------------------------------------------ #
-    player = Player()
-    player.setup(
-        x=SCREEN_WIDTH // 2,           # Center of screen
-        y=SCREEN_HEIGHT - 50,           # Near bottom of screen
-        dx=0,
-        dy=0,
-        image_prefix="player_stage",
-        anim_speed=1,
-        hp=2,
-    )
-    player.set_might(rng=700, dmg=1, cad=55, shotspd=3)
+    player: Player
+    level: Level
+    level_index = 1
 
-    level = Level()
-    level.load("lvl001.rfg")
+    def start_run():
+        nonlocal  player, level, level_index
+        player = Player()
+        player.setup(
+                        x=SCREEN_WIDTH // 2,           # Center of screen
+                        y=SCREEN_HEIGHT - 50,           # Near bottom of screen
+                        dx=0,
+                        dy=0,
+                        image_prefix="player_stage",
+                        anim_speed=1,
+                        hp=2,
+                        )
+        player.set_might(rng=700, dmg=1, cad=55, shotspd=3)
+        level_index = 1
+        level = Level()
+        level.load("lvl001.rfg")
 
-   
-    play_state = "playing"  # TODO: Add "title" and "gameover" states
-    game_over_state = "game_over"
-    game_state = play_state
+    start_run()
+
+    # Proceed with next level
+    def start_next_level():
+        nonlocal level, level_index
+        level_index += 1
+        path = os.path.join("lvl00" + str(level_index) + ".rfg")
+        level = Level()
+        level.load(path)
+    
+
+    #Input
+    mouse_clicked = False
+
+    
 
     # ------------------------------------------------------------------ #
     #  Game loop                                                         #
@@ -59,28 +88,22 @@ def main():
         #  Event handling                                                 #
         # -------------------------------------------------------------- #
         for event in pygame.event.get():
+
             if event.type == pygame.QUIT:
                 running = False
+
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     running = False
-                if game_state == game_over_state:
-                    if event.key == pygame.K_SPACE:
-                        player = Player()
-                        player.setup(
-                            x=SCREEN_WIDTH // 2,           # Center of screen
-                            y=SCREEN_HEIGHT - 50,           # Near bottom of screen
-                            dx=0,
-                            dy=0,
-                            image_prefix="player_stage",
-                            anim_speed=1,
-                            hp=2,
-                            )
-                        player.set_might(rng=700, dmg=1, cad=55, shotspd=3)
+                    
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    mouse_clicked = True    
+            else: mouse_clicked = False
 
-                        level = Level()
-                        level.load("lvl001.rfg")
-                        game_state = play_state
+                    
+                    
+                    
 
         # -------------------------------------------------------------- #
         #  Update                                                        #
@@ -89,15 +112,27 @@ def main():
             player.step()
             level.step()
 
+            # Update obstacles
             for obs in level.obstacles:
                 obs.step()
 
+            # Update Enemies and score
             for enemy in level.enemies:
                 enemy.step(pygame.Vector2(player.pos.x,player.pos.y))
+
+                if (enemy.is_alive() == False):
+                    ScoreManager.add_score(1)
+                    
+
             # Remove dead enemies
             level.enemies = [e for e in level.enemies if e.is_alive()]
 
-            # TODO: Check collisions (shots vs enemies, enemies vs player)
+            # Finish level when all Enemies are dead
+            if len(level.enemies) == 0:
+                ScoreManager.try_update_highscore()
+                game_state = shop_state
+
+            # Check collisions (enemies vs shots vs obstacles vs player)
             for obs in level.obstacles:
                 if (obs.collision_with_player(player.get_rect())):
                     level.obstacles.remove(obs)
@@ -118,17 +153,33 @@ def main():
                         enemy.get_damage(1)
                         shot.life = 0
             
-
-            # TODO: Check player.hp <= 0 for death / game_state transition
+            # Check player.hp <= 0 for death / game_state_transition
             if player.hp <= 0:
+                ScoreManager.try_update_highscore()
                 game_state = game_over_state
 
-        
-           
-           
-                
 
-                        
+        if game_state == game_over_state:
+            if mouse_clicked:
+                start_run()
+                game_state = play_state
+
+
+        if game_state == shop_state:
+            ShopManager.set_shop_offer(player)
+
+            if mouse_clicked:
+                mouse_pos = pygame.mouse.get_pos()
+                ShopManager.check_for_interaction(mouse_pos)
+            
+            upgrade_bought = ShopManager.check_if_upgrade_is_bought()
+
+            if upgrade_bought == True:
+                ShopManager.reset_shop()
+                start_next_level()
+                game_state = play_state
+
+                       
         # -------------------------------------------------------------- #
         #  Draw                                                          #
         # -------------------------------------------------------------- #
@@ -148,18 +199,18 @@ def main():
         player.draw(screen)
 
         # TODO: Draw UI
-        UIManager.draw_UI(screen, SCREEN_WIDTH, SCREEN_HEIGHT, game_state)
+        UIManager.draw_UI(screen, game_state)
 
         
-
-
         pygame.display.flip()
         clock.tick(FPS)
 
     # ------------------------------------------------------------------ #
     #  Cleanup                                                           #
     # ------------------------------------------------------------------ #
-    pygame.quit()
+    pygame.quit()
+
+
 
 
 if __name__ == "__main__":

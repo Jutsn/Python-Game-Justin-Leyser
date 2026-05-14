@@ -1,10 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\uebung-001",
     "\\uebung-002",
-    "\\uebung-003"
+    "\\uebung-003",
+    "\\uebung-003\\assets"
   ],
-  "SelectedNode": "\\uebung-003\\main.py",
   "PreviewInSolutionExplorer": false
 }
