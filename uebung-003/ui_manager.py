@@ -1,6 +1,6 @@
 import os
 import pygame
-from settings import BLACK, RED, WHITE, SCREEN_WIDTH, SCREEN_HEIGHT, ASSET_DIR
+from settings import BLACK, RED, WHITE, GOLD, SCREEN_WIDTH, SCREEN_HEIGHT, ASSET_DIR
 
 pygame.font.init()
 pop_up_font = pygame.font.SysFont(None, 40)
@@ -12,12 +12,13 @@ money_font = pygame.font.SysFont(None, 40)
 your_score_name_tag_font = pygame.font.SysFont(None, 40)
 highscore_font = pygame.font.SysFont(None, 42)
 shop_font = pygame.font.SysFont(None, 30)
+restart_font = pygame.font.SysFont(None, 30)
 
 
 POWER_UP_TEXT_COL = RED
 HEALTH_TEXT_COL = BLACK
 GAME_OVER_TEXT_COL = BLACK
-YOU_WON_TEXT_COL = BLACK
+YOU_WON_TEXT_COL = GOLD
 SCORE_TEXT_COL = BLACK
 MONEY_TEXT_COL = BLACK
 SHOP_TEXT_COL = WHITE
@@ -33,6 +34,7 @@ high_score_name_tag_text = "Highscore"
 high_score_text = str(0)
 money_name_tag_text = "$"
 money_text = str(0)
+restart_text = "Click to Restart"
 
 is_pop_up_showing = False
 start_time = 0
@@ -159,7 +161,7 @@ def draw_pop_up_text(screen):
 
 def draw_game_over_window(screen):
     # Draw Game Over text
-    game_over_surface = game_over_font.render(you_won_text, True, GAME_OVER_TEXT_COL)
+    game_over_surface = game_over_font.render(game_over_text, True, GAME_OVER_TEXT_COL)
     game_over_pos_x = SCREEN_WIDTH/2 - game_over_surface.width/2
     game_over_pos_y = SCREEN_HEIGHT/3
     screen.blit(game_over_surface, (game_over_pos_x, game_over_pos_y))
@@ -185,11 +187,19 @@ def draw_game_over_window(screen):
     # Draw Score number
     score_surface = your_score_name_tag_font.render(score_text, True, SCORE_TEXT_COL)
     score_pos_x = SCREEN_WIDTH/2 - score_surface.width/2
-    score_pos_y = tag_pos_y + score_surface.height + 5
+    score_pos_y = tag_pos_y + score_tag_surface.height + 5
     screen.blit(score_surface, (score_pos_x, score_pos_y))
 
-def draw_shop_window(screen):
+    # Draw Restart text
+    restart_surface = restart_font.render("Click to Restart",True,GAME_OVER_TEXT_COL)
+    restart_pos_x = SCREEN_WIDTH / 2 - restart_surface.width / 2
+    restart_pos_y = SCREEN_HEIGHT - restart_surface.height - 50
+    screen.blit(restart_surface, (restart_pos_x, restart_pos_y))
 
+
+
+
+def draw_shop_window(screen):
     # =====================================================
     # CARD 1
     # =====================================================
@@ -263,7 +273,7 @@ def draw_shop_window(screen):
 
 def draw_win_screen(screen):
     # Draw Game Over text
-    you_won_surface = you_won_font.render(game_over_text, True, YOU_WON_TEXT_COL)
+    you_won_surface = you_won_font.render(you_won_text, True, YOU_WON_TEXT_COL)
     game_over_pos_x = SCREEN_WIDTH/2 - you_won_surface.width/2
     game_over_pos_y = SCREEN_HEIGHT/3
     screen.blit(you_won_surface, (game_over_pos_x, game_over_pos_y))
@@ -271,7 +281,7 @@ def draw_win_screen(screen):
     # Draw HighScore name tag
     high_score_tag_surface = highscore_font.render(high_score_name_tag_text, True, SCORE_TEXT_COL)
     tag_pos_x = SCREEN_WIDTH/2 - high_score_tag_surface.width/2
-    tag_pos_y = game_over_pos_y + game_over_surface.height + 5
+    tag_pos_y = game_over_pos_y + you_won_surface.height + 5
     screen.blit(high_score_tag_surface, (tag_pos_x, tag_pos_y))
 
     # Draw HighScore number
@@ -291,6 +301,12 @@ def draw_win_screen(screen):
     score_pos_x = SCREEN_WIDTH/2 - score_surface.width/2
     score_pos_y = tag_pos_y + score_surface.height + 5
     screen.blit(score_surface, (score_pos_x, score_pos_y))
+
+    # Draw Restart text
+    restart_surface = restart_font.render(restart_text,True,YOU_WON_TEXT_COL)
+    restart_pos_x = SCREEN_WIDTH / 2 - restart_surface.width / 2
+    restart_pos_y = SCREEN_HEIGHT - restart_surface.height - 50
+    screen.blit(restart_surface, (restart_pos_x, restart_pos_y))
 
     
 

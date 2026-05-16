@@ -12,6 +12,11 @@ def remove_money(coins):
 	money -= coins
 	ui_manager.update_money_ui(money)
 
+def reset_money():
+	global money
+	money = 0
+	ui_manager.update_money_ui(money)
+
 def get_current_money():
    return money
 	

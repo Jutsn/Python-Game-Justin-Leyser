@@ -20,5 +20,9 @@ class CometBoss(Enemy):
 
             self.pos += direction * self.speed
 
+            # countdown for Red Flash when hit
+            if self.flash_timer > 0:
+                self.flash_timer -= 1
+
 
    

@@ -38,7 +38,8 @@ class Enemy(Entity):
         speed: int = 1,
         anim_prefix: str = "enemy",
         track: int = 1,
-        position: int =100
+        position: int =100,
+        boss: int = 0
     ):
         """Initialize enemy with position, images, and damage."""
         super().setup(x, y, dx, dy, image_prefix, anim_speed, hp)
@@ -48,14 +49,16 @@ class Enemy(Entity):
         self.position = position
         self.ready = False
         self.alive = True
+        self.boss = boss
 
     # ------------------------------------------------------------------ #
     #  step — STUB: calculates direction toward target but doesn't move  #
     # ------------------------------------------------------------------ #
     def step(self, target_pos: pygame.Vector2):
-        """STUB: Calculate direction toward target.
-        The C++ version computes the vector but doesn't apply it.
-        Students should implement actual movement here."""
+        """STUB: Calculate direction toward target."""
+        # Move by direction (in case dir is set) and flash when hit
+        super().step()
+
         if self.is_alive():
             
             if self.pos.y >= 0:

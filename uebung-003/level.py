@@ -178,7 +178,8 @@ class Level(Entity):
                 damage=damage,
                 speed=speed,
                 track=track,
-                position=position
+                position=position,
+                boss = boss
             )
 
             if self.num_tracks > 0:
@@ -217,7 +218,8 @@ class Level(Entity):
                 damage=damage,
                 speed=speed,
                 track=track,
-                position=position
+                position=position,
+                boss = boss
             )
 
             if self.num_tracks > 0:

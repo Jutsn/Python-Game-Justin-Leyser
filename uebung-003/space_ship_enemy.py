@@ -24,24 +24,8 @@ class SpaceShip(Enemy):
                 direction = pygame.Vector2(0,1)
                 
             else:
-                # Calculate direction toward target (not applied — stub)
-                shot_direction = target_pos - self.pos
-                # TODO: Normalize direction, apply speed, move toward target
-                shot_direction = shot_direction.normalize()
-                # Cadence countdown — fire a shot when it reaches 0
-                self._cad_counter -= 1
-                if self._cad_counter <= 0:
-                    self._cad_counter = self.cad
-                    self.create_shot()
-                    print("Shot created")
 
-                # Step all active shots
-                for shot in self.shots:
-                    shot.step()
-
-                # Remove dead shots
-                self.shots = [s for s in self.shots if s.is_alive()]
-
+                #move left/right
                 if self.pos.x <= 50:
                     self.moving_right = True
                 if self.pos.x >= SCREEN_WIDTH - 50:
@@ -52,7 +36,29 @@ class SpaceShip(Enemy):
                 elif self.moving_right== False:
                     direction = pygame.Vector2(-1,0)
 
+                # # Calculate direction toward target (not applied — stub)
+                # shot_direction = target_pos - self.pos
+                # # TODO: Normalize direction, apply speed, move toward target
+                # shot_direction = shot_direction.normalize()
+
+                # Cadence countdown — fire a shot when it reaches 0
+                self._cad_counter -= 1
+                if self._cad_counter <= 0:
+                    self._cad_counter = self.cad
+                    self.create_shot()
+
+                # Step all active shots
+                for shot in self.shots:
+                    shot.step()
+
+                # Remove dead shots
+                self.shots = [s for s in self.shots if s.is_alive()]
+
             self.pos += direction * self.speed
+
+            # Countdown for Red Flash when hit
+            if self.flash_timer > 0:
+                self.flash_timer -= 1
 
 
     # ------------------------------------------------------------------ #

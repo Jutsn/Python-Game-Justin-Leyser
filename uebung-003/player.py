@@ -58,16 +58,16 @@ class Player(Entity):
 
     def upgrade_might(self, upgrade_type):
         """Upgrade weapon stats. Called from ShopManager when Shopping Upgrades."""
-        if upgrade_type == "Range":
+        if upgrade_type["text"] == "Range":
             self.rng += upgrade_type["value"]
             print(str(self.rng))
-        if upgrade_type == "Damage":
+        if upgrade_type["text"] == "Damage":
             self.dmg += upgrade_type["value"]
             print(str(self.dmg))
-        if upgrade_type == "Fire Rate":
+        if upgrade_type["text"] == "Fire Rate":
             self.cad -= (upgrade_type["value"] * self.cad)
             print(str(self.cad))
-        if upgrade_type == "Shot Spd":
+        if upgrade_type["text"] == "Shot Spd":
             self.shotspd += (upgrade_type["value"] *  self.shotspd)
             print(str(self.shotspd))
     
@@ -104,7 +104,7 @@ class Player(Entity):
     # ------------------------------------------------------------------ #
     def step(self):
         """Per-frame update: move, fire when cadence allows, update shots."""
-        # Move by direction (in case dir is set)
+        # Move by direction (in case dir is set) and flash when hit
         super().step()
 
         # Player X follows mouse X position

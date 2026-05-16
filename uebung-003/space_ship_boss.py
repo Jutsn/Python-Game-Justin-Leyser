@@ -11,7 +11,7 @@ class SpaceShipBoss(SpaceShip):
         self.shots: list[Shot] = []   # Active shots
         self.rng = 700      # Shot range in frames
         self.dmg = 1        # Damage per shot
-        self.cad = 50       # Cadence: frames between shots
+        self.cad = 40       # Cadence: frames between shots
         self.shotspd = 2    # Shot speed (pixels per frame, upward)
         self._cad_counter = 0   # Countdown to next shot
     

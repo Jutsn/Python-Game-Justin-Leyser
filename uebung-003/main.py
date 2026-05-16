@@ -62,15 +62,20 @@ def main():
                         dy=0,
                         image_prefix="player",
                         anim_speed=1,
-                        hp=2,
+                        hp=3,
                         )
+        
         player.set_might(rng=200, dmg=1, cad=55, shotspd=2)
         level_index = 1
         level = Level()
         level.load("lvl001.rfg")
 
-        m_path = os.path.join(ASSET_DIR, level.music_name)
+        ui_manager.update_player_health_ui(player.hp)
+        score_manager.reset_score()
+        money_manager.reset_money()
 
+        # Set background music
+        m_path = os.path.join(ASSET_DIR, level.music_name)
         try:
             background_music = pygame.mixer.music.load(m_path)
             # Lautstärke auf 50% setzen
@@ -82,17 +87,18 @@ def main():
        
 
     start_run()
+    # Check If Next Level-File exists
+    def check_for_next_level():
+        path = os.path.join(ASSET_DIR, "lvl00" + str(level_index + 1) + ".rfg")
+        return os.path.exists(path)
 
     # Proceed with next level
     def start_next_level():
         nonlocal level, level_index
         level_index += 1
-        try:
-            path = os.path.join("lvl00" + str(level_index) + ".rfg")
-            level = Level()
-            level.load(path)
-        except:
-            game_state == win_state
+        path = os.path.join("lvl00" + str(level_index) + ".rfg")
+        level = Level()
+        level.load(path)
 
     #Input
     mouse_clicked = False
@@ -148,7 +154,10 @@ def main():
             # Finish level when all Enemies are dead
             if len(level.enemies) == 0:
                 score_manager.try_update_highscore()
-                game_state = shop_state
+                if check_for_next_level() == True:
+                    game_state = shop_state
+                elif check_for_next_level() == False:
+                    game_state = win_state
 
             # Check collisions (enemies vs shots vs obstacles vs player)
             collision_manager.check_for_collisions(level, player)
@@ -163,13 +172,11 @@ def main():
             if mouse_clicked:
                 start_run()
                 game_state = play_state
-
+        
         if game_state == win_state:
             if mouse_clicked:
                 start_run()
                 game_state = play_state
-
-
 
         if game_state == shop_state:
             shop_manager.set_shop_offer(player)

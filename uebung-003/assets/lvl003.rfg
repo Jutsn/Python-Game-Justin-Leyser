@@ -63,18 +63,16 @@
 
 L T(3) B(background2.png) M(Battle in the Stars) D(1550)
 
-
-
-
-S B(0) D(1) H(1) S(1) A(space_ship_001) N(3) T(0) P(-200)
-S B(0) D(1) H(1) S(1) A(space_ship_001) N(3) T(1) P(-600)
-
-E B(1) D(1) H(8) S(1) A(comet_boss) N(1) T(2) P(-800)
-
-S B(0) D(1) H(1) S(1) A(space_ship_001) N(3) T(0) P(-1200)
-S B(0) D(1) H(1) S(1) A(space_ship_001) N(3) T(1) P(-1600)
-S B(0) D(1) H(1) S(1) A(space_ship_001) N(3) T(2) P(-2200)
-
-E B(1) D(1) H(8) S(1) A(comet_boss) N(1) T(1) P(-2400)
-
-S B(1) D(1) H(15) S(1) A(space_ship_boss) N(1) T(0) P(-2800)
+S B(1) D(1) H(15) S(1) A(space_ship_boss) N(1) T(0) P(0)
+#S B(0) D(1) H(1) S(1) A(space_ship_001) N(3) T(0) P(-200)
+#S B(0) D(1) H(1) S(1) A(space_ship_001) N(3) T(1) P(-600)
+#
+#E B(1) D(1) H(8) S(1) A(comet_boss) N(1) T(2) P(-800)
+#
+#S B(0) D(1) H(1) S(1) A(space_ship_001) N(3) T(0) P(-1200)
+#S B(0) D(1) H(1) S(1) A(space_ship_001) N(3) T(1) P(-1600)
+#S B(0) D(1) H(1) S(1) A(space_ship_001) N(3) T(2) P(-2200)
+#
+#E B(1) D(1) H(8) S(1) A(comet_boss) N(1) T(1) P(-2400)
+#
+#S B(1) D(1) H(15) S(1) A(space_ship_boss) N(1) T(0) P(-2800)

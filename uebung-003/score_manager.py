@@ -10,6 +10,11 @@ def add_score(points):
 	score += points
 	ui_manager.update_score_ui(score)
 
+def reset_score():
+	global score
+	score = 0
+	ui_manager.update_score_ui(score)
+
 def try_update_highscore():
 	global score, highscore
 	if score >= highscore:

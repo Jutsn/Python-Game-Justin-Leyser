@@ -49,6 +49,7 @@ class Entity:
         # Load animation frames matching the prefix pattern.
         # The C++ code loads files like <prefix>001.png, <prefix>002.png, ...
         self.images = self._load_images(image_prefix)
+        self.flash_timer = 0
 
         # Set hitbox to first image dimensions (if any images loaded)
         if self.images:
@@ -63,6 +64,9 @@ class Entity:
         """Move entity by its direction vector. Called once per frame."""
         self.pos += self.dir
 
+        if self.flash_timer > 0:
+            self.flash_timer -= 1
+
     # ------------------------------------------------------------------ #
     #  draw — render current animation frame, advance animation counter  #
     # ------------------------------------------------------------------ #
@@ -72,6 +76,11 @@ class Entity:
             return
 
         image = self.images[self.anim_pos]
+        # Rot färben bei treffer
+        if self.flash_timer > 0:
+            image = image.copy()
+            image.fill((255, 0, 0), special_flags=pygame.BLEND_RGB_ADD)
+
         # Draw centered on pos
         rect = image.get_rect(center=(int(self.pos.x), int(self.pos.y)))
         screen.blit(image, rect)
@@ -113,3 +122,4 @@ class Entity:
     def get_damage(self, damage):
         if self.hp > 0:
             self.hp -= damage
+            self.flash_timer = 10

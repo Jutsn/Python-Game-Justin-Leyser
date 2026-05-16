@@ -48,7 +48,7 @@ def try_buy_upgrade(upgrade_type):
         upgrade_bought = True
         money_manager.remove_money(upgrade_type["cost"])
         current_player.upgrade_might(upgrade_type)
-
+        
 def reset_shop():
     global upgrade_bought
     upgrade_bought = False
