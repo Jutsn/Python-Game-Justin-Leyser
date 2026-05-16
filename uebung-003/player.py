@@ -58,17 +58,17 @@ class Player(Entity):
 
     def upgrade_might(self, upgrade_type):
         """Upgrade weapon stats. Called from ShopManager when Shopping Upgrades."""
-        if upgrade_type == "+100 Range":
-            self.rng += 100
+        if upgrade_type == "Range":
+            self.rng += upgrade_type["value"]
             print(str(self.rng))
-        if upgrade_type == "+1 Damage":
-            self.dmg += 1
+        if upgrade_type == "Damage":
+            self.dmg += upgrade_type["value"]
             print(str(self.dmg))
-        if upgrade_type == "+10% Fire Rate":
-            self.cad -= 5
+        if upgrade_type == "Fire Rate":
+            self.cad -= (upgrade_type["value"] * self.cad)
             print(str(self.cad))
-        if upgrade_type == "+1 Shot Speed":
-            self.shotspd += 1
+        if upgrade_type == "Shot Spd":
+            self.shotspd += (upgrade_type["value"] *  self.shotspd)
             print(str(self.shotspd))
     
     def power_up_might(self, duration):
@@ -108,8 +108,9 @@ class Player(Entity):
         super().step()
 
         # Player X follows mouse X position
-        mouse_x, _ = pygame.mouse.get_pos()
+        mouse_x, mouse_y = pygame.mouse.get_pos()
         self.pos.x = mouse_x
+        self.pos.y = mouse_y
 
         # Cadence countdown — fire a shot when it reaches 0
         self._cad_counter -= 1
@@ -128,7 +129,9 @@ class Player(Entity):
         if (self.power_up_active):
            self.run_power_up_timer()
 
-
+    def collision_with_shot(self, shot_rect):
+        if self.get_rect().colliderect(shot_rect):
+            return True  
     # ------------------------------------------------------------------ #
     #  create_shot — spawn a new shot above the player                   #
     # ------------------------------------------------------------------ #

@@ -1,4 +1,5 @@
 import pygame
+import os
 import RedBallManager
 import CollisionManager
 
@@ -34,9 +35,9 @@ player_moving_right = False
 player_jumping = False
 player_movement_y = 0.0
 player_jump_power = 4.5
-jumping_sound = pygame.mixer.Sound(r"D:\Games Programming\Python Game Justin Leyser\sounds\jump.wav")
+jumping_sound = pygame.mixer.Sound(os.path.join(os.path.dirname(__file__), "sounds", "jump.wav"))
 jumping_sound.set_volume(1.0)
-player_sprite = pygame.image.load(r"D:\Games Programming\Python Game Justin Leyser\sprites\sprite_40.png")
+player_sprite = pygame.image.load(os.path.join(os.path.dirname(__file__), "sprites", "sprite_40.png"))
 image = pygame.Surface([32, 32])
 
 # ---- Bouncing circle (aus dem "Boing boing"-Beispiel) ----

@@ -57,10 +57,14 @@ class Enemy(Entity):
         The C++ version computes the vector but doesn't apply it.
         Students should implement actual movement here."""
         if self.is_alive():
-            # Calculate direction toward target (not applied — stub)
-            direction = target_pos - self.pos
-            # TODO: Normalize direction, apply speed, move toward target
-            direction = direction.normalize()
+            
+            if self.pos.y >= 0:
+                # Calculate direction toward target (not applied — stub)
+                direction = target_pos - self.pos
+                # TODO: Normalize direction, apply speed, move toward target
+                direction = direction.normalize()
+            else:
+                direction = pygame.Vector2(0,1)
             self.pos += direction * self.speed
         
     def collision_with_player(self, player_rect):

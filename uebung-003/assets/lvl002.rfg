@@ -33,6 +33,22 @@
 # E D(1) S(1) A(EnemyA) N(12) T(0)
 #
 #
+#
+# Introduce a Space Ship:
+# --------------------
+#
+# "S": means SpaceShip.
+# "B": boss/no boss (1/0)
+# "D": means the damage it can do.
+# "H": means the hp
+# "S": means the speed it can move. S(1) means one pixel per frame in each direction, including diagonally.
+# "A(example)": means animation. The files named example001.png, example002.png, etc. will be loaded.
+# "N": means the number of enemies who will be spawned.
+# "T": means the track upon which the swarm will be released (numbering starts at 0).
+# "P": means the position within the duration in a level, meaning when, the enemies will spawn.
+#
+#
+#
 # Introduce an obstacle:
 # -----------------------
 #
@@ -45,16 +61,18 @@
 # "W": Describes the pixel width.
 
 
-L T(3) B(background2.png) M(Backgnd001music) D(2000)
+L T(3) B(background2.png) M(Battle in the Stars) D(1550)
 
-E D(1) S(1) A(enemyA001) N(5) T(1) P(0)
-E D(1) S(2) A(enemyA001) N(5) T(0) P(-200)
+E B(1) D(1) H(10) S(1) A(comet_boss) N(1) T(1) P(-200)
+E B(1) D(1) H(10) S(1) A(comet_boss) N(1) T(2) P(-800)
 
-O T(1) D(-200) L(10) C(35,56,90) W(5)
+E B(0) D(1) H(1) S(1) A(enemyA001) N(3) T(0) P(-1100)
+E B(0) D(1) H(1) S(1) A(enemyA001) N(3) T(1) P(-1100)
 
-E D(1) S(1) A(enemyA001) N(5) T(2) P(-300)
-E D(1) S(2) A(enemyA001) N(5) T(1) P(-500)
+E B(0) D(1) H(1) S(1) A(enemyA001) N(5) T(0) P(-1500)
+E B(0) D(1) H(1) S(1) A(enemyA001) N(4) T(1) P(-1500)
+E B(0) D(1) H(1) S(2) A(enemyA001) N(2) T(2) P(-1500)
 
-E D(1) S(2) A(enemyA001) N(5) T(2) P(-600)
-E D(1) S(1) A(enemyA001) N(4) T(1) P(-800)
-E D(1) S(2) A(enemyA001) N(2) T(0) P(-2200)
+S B(0) D(1) H(5) S(1) A(space_ship_001) N(1) T(0) P(-1800)
+S B(0) D(1) H(5) S(1) A(space_ship_001) N(1) T(1) P(-1800)
+S B(0) D(1) H(5) S(1) A(space_ship_001) N(1) T(2) P(-1800)

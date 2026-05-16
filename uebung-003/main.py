@@ -12,12 +12,15 @@
 
 import pygame
 import os
-from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS, BLACK
+from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS, BLACK, ASSET_DIR
 from player import Player
 from level import Level, Obstacle
-import UIManager
-import ScoreManager
-import ShopManager
+import collision_manager
+import ui_manager
+import score_manager
+import shop_manager
+import money_manager
+
 
 
 def main():
@@ -30,11 +33,15 @@ def main():
     clock = pygame.time.Clock()
 
     #Load Highscore
-    ScoreManager.load_high_score()
+    score_manager.load_high_score()
+
+    #
+    current_song_playing = None
 
     #define game states
     play_state = "playing"
     game_over_state = "game_over"
+    win_state = "win_state"
     shop_state = "shopping"
     game_state = play_state
     
@@ -53,14 +60,26 @@ def main():
                         y=SCREEN_HEIGHT - 50,           # Near bottom of screen
                         dx=0,
                         dy=0,
-                        image_prefix="player_stage",
+                        image_prefix="player",
                         anim_speed=1,
                         hp=2,
                         )
-        player.set_might(rng=700, dmg=1, cad=55, shotspd=3)
+        player.set_might(rng=200, dmg=1, cad=55, shotspd=2)
         level_index = 1
         level = Level()
         level.load("lvl001.rfg")
+
+        m_path = os.path.join(ASSET_DIR, level.music_name)
+
+        try:
+            background_music = pygame.mixer.music.load(m_path)
+            # Lautstärke auf 50% setzen
+            pygame.mixer.music.set_volume(0.5)
+            # Musik abspielen
+            pygame.mixer.music.play(-1)
+        except pygame.error:
+                print(f"Warning: could not load music {m_path}")
+       
 
     start_run()
 
@@ -68,10 +87,12 @@ def main():
     def start_next_level():
         nonlocal level, level_index
         level_index += 1
-        path = os.path.join("lvl00" + str(level_index) + ".rfg")
-        level = Level()
-        level.load(path)
-    
+        try:
+            path = os.path.join("lvl00" + str(level_index) + ".rfg")
+            level = Level()
+            level.load(path)
+        except:
+            game_state == win_state
 
     #Input
     mouse_clicked = False
@@ -101,10 +122,7 @@ def main():
                     mouse_clicked = True    
             else: mouse_clicked = False
 
-                    
-                    
-                    
-
+             
         # -------------------------------------------------------------- #
         #  Update                                                        #
         # -------------------------------------------------------------- #
@@ -121,41 +139,23 @@ def main():
                 enemy.step(pygame.Vector2(player.pos.x,player.pos.y))
 
                 if (enemy.is_alive() == False):
-                    ScoreManager.add_score(1)
-                    
-
+                    score_manager.add_score(1)
+                    money_manager.add_money(1)
+                
             # Remove dead enemies
             level.enemies = [e for e in level.enemies if e.is_alive()]
 
             # Finish level when all Enemies are dead
             if len(level.enemies) == 0:
-                ScoreManager.try_update_highscore()
+                score_manager.try_update_highscore()
                 game_state = shop_state
 
             # Check collisions (enemies vs shots vs obstacles vs player)
-            for obs in level.obstacles:
-                if (obs.collision_with_player(player.get_rect())):
-                    level.obstacles.remove(obs)
-                    player.power_up_might(obs.length)
-                    UIManager.show_pop_up_UI("Temporary Stat Boost")
-                for enemy in level.enemies:
-                    if (obs.collision_with_enemy(enemy.get_rect())):
-                        level.enemies.remove(enemy)
-                        #level.obstacles.remove(obs)
-
-            for enemy in level.enemies:
-                if enemy.collision_with_player(player.get_rect()):
-                    level.enemies.remove(enemy)
-                    player.get_damage(enemy.damage)
-                    UIManager.update_player_health_ui(player.hp)
-                for shot in player.shots:
-                    if enemy.collision_with_shot(shot.get_rect()):
-                        enemy.get_damage(1)
-                        shot.life = 0
+            collision_manager.check_for_collisions(level, player)
             
             # Check player.hp <= 0 for death / game_state_transition
             if player.hp <= 0:
-                ScoreManager.try_update_highscore()
+                score_manager.try_update_highscore()
                 game_state = game_over_state
 
 
@@ -164,20 +164,30 @@ def main():
                 start_run()
                 game_state = play_state
 
+        if game_state == win_state:
+            if mouse_clicked:
+                start_run()
+                game_state = play_state
+
+
 
         if game_state == shop_state:
-            ShopManager.set_shop_offer(player)
+            shop_manager.set_shop_offer(player)
 
             if mouse_clicked:
                 mouse_pos = pygame.mouse.get_pos()
-                ShopManager.check_for_interaction(mouse_pos)
+                shop_manager.check_for_interaction(mouse_pos)
             
-            upgrade_bought = ShopManager.check_if_upgrade_is_bought()
+            upgrade_bought = shop_manager.check_if_upgrade_is_bought()
 
             if upgrade_bought == True:
-                ShopManager.reset_shop()
+                shop_manager.reset_shop()
                 start_next_level()
                 game_state = play_state
+
+
+
+
 
                        
         # -------------------------------------------------------------- #
@@ -199,7 +209,7 @@ def main():
         player.draw(screen)
 
         # TODO: Draw UI
-        UIManager.draw_UI(screen, game_state)
+        ui_manager.draw_UI(screen, game_state)
 
         
         pygame.display.flip()
@@ -208,7 +218,8 @@ def main():
     # ------------------------------------------------------------------ #
     #  Cleanup                                                           #
     # ------------------------------------------------------------------ #
-    pygame.quit()
+    pygame.quit()
+
 
 
 

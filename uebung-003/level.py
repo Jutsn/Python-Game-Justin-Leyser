@@ -7,6 +7,10 @@ import re
 import pygame
 from entity import Entity
 from enemy import Enemy
+from comet_boss import CometBoss
+from space_ship_enemy import SpaceShip
+from space_ship_boss import SpaceShipBoss
+
 from obstacle import Obstacle
 from settings import ASSET_DIR, SCREEN_WIDTH, SCREEN_HEIGHT
 
@@ -23,6 +27,7 @@ class Level(Entity):
         self.enemies: list[Enemy] = []
         self.obstacles: list[Obstacle] = []
         self.background_image: pygame.Surface | None = None
+        self.background_music: pygame.mixer.Sound | None = None
 
         self.num_tracks = 0          # Number of tracks (columns)
         self.duration = 0            # Level duration in frames
@@ -57,6 +62,10 @@ class Level(Entity):
                 # Enemy line: E D(1) S(1) A(enemy) N(5) T(0) P(100)
                 elif line.startswith("E "):
                     self._parse_enemy_line(line)
+
+                # Space-Ship line: S D(1) H(1) S(1) A(enemy) N(5) T(0) P(100)
+                elif line.startswith("S "):
+                    self._parse_space_ship_line(line)
 
                 # Obstacle line: O T(0) D(100) L(100) C(35,56,90) W(5)
                 elif line.startswith("O "):
@@ -117,6 +126,9 @@ class Level(Entity):
         val = self._parse_param(line, "M")
         if val:
             self.music_name = val
+            if not os.path.splitext(self.music_name)[1]:
+                self.music_name += ".ogg"
+          
 
         # Duration
         val = self._parse_param(line, "D")
@@ -141,7 +153,9 @@ class Level(Entity):
         STUB: Parses the line but does NOT create enemies yet.
         Students implement enemy creation and spawning in Uebung 003."""
         # Values are parsed but not used — mirrors C++ skeleton behavior
+        boss = int(self._parse_param(line, "B") or 0)
         damage = int(self._parse_param(line, "D") or 1)
+        hp = int(self._parse_param(line, "H") or 1)
         speed = int(self._parse_param(line, "S") or 1)
         anim_prefix = self._parse_param(line, "A") or "enemy"
         count = int(self._parse_param(line, "N") or 1)
@@ -149,7 +163,10 @@ class Level(Entity):
         position = int(self._parse_param(line, "P") or 0)
         # TODO: Students create and store Enemy objects here
         for i in range(count):
-            enemy = Enemy()
+            if boss == 0:
+                enemy = Enemy()
+            else:
+                enemy = CometBoss()
             enemy.setup(
                 x = 0,
                 y = 0,
@@ -157,7 +174,7 @@ class Level(Entity):
                 dy = 0,
                 image_prefix = anim_prefix,
                 anim_speed = 0,
-                hp = 1,
+                hp = hp,
                 damage=damage,
                 speed=speed,
                 track=track,
@@ -171,6 +188,45 @@ class Level(Entity):
                 enemy.pos.y = position - (i * 100)
 
             self.enemies.append(enemy)
+
+    def _parse_space_ship_line(self, line: str):
+        """Parse: S D(1) H() S(1) A(enemy) N(5) T(0) P(100)"""
+        # Values are parsed but not used — mirrors C++ skeleton behavior
+        boss = int(self._parse_param(line, "B") or 0)
+        damage = int(self._parse_param(line, "D") or 1)
+        hp = int(self._parse_param(line, "H") or 1)
+        speed = int(self._parse_param(line, "S") or 1)
+        anim_prefix = self._parse_param(line, "A") or "boss"
+        count = int(self._parse_param(line, "N") or 1)
+        track = int(self._parse_param(line, "T") or 0)
+        position = int(self._parse_param(line, "P") or 0)
+
+        for i in range(count):
+            if boss == 0:
+                space_ship = SpaceShip()
+            else:
+                space_ship = SpaceShipBoss()
+            space_ship.setup(
+                x = 0,
+                y = 0,
+                dx = 0,
+                dy = 0,
+                image_prefix = anim_prefix,
+                anim_speed = 0,
+                hp = hp,
+                damage=damage,
+                speed=speed,
+                track=track,
+                position=position
+            )
+
+            if self.num_tracks > 0:
+                track_width = SCREEN_WIDTH // self.num_tracks
+                space_ship_center_x = track_width * (track + 1)
+                space_ship.pos.x = space_ship_center_x - space_ship.hitbox_w // 2
+                space_ship.pos.y = position - (i * 100)
+
+            self.enemies.append(space_ship)
 
     def _parse_obstacle_line(self, line: str):
         """Parse: O T(0) D(100) L(100) C(35,56,90) W(5)
