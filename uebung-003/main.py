@@ -35,8 +35,6 @@ def main():
     #Load Highscore
     score_manager.load_high_score()
 
-    #
-    current_song_playing = None
 
     #define game states
     play_state = "playing"

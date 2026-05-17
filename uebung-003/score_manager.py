@@ -26,11 +26,13 @@ def load_high_score():
 	global highscore
 	try: 
 		f = open('HighScore', 'r', encoding="utf-8")
-		if f.read() != "":
-			highscore = int(f.read())
-			ui_manager.update_high_score_ui(highscore)
+		content = f.read()
+		if content != "":
+			highscore = int(content)
 		else:
 			highscore = 0
+
+		ui_manager.update_high_score_ui(highscore)
 		f.close()
 	except:
 		highscore = 0

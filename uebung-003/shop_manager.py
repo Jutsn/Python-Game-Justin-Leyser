@@ -25,11 +25,11 @@ def set_shop_offer(player):
 
         #randomize price
         card_1 = shop_offer[0]
-        card_1["cost"] = 1#random.randrange(20,30)
+        card_1["cost"] = random.randrange(20,30)
         card_2 = shop_offer[1]
-        card_2["cost"] = 1#random.randrange(25,40)
+        card_2["cost"] = random.randrange(25,30)
         card_3 = shop_offer[2]
-        card_3["cost"] = 1#random.randrange(20,25)
+        card_3["cost"] = random.randrange(20,25)
         #update UI
         ui_manager.update_item_cards_ui(card_1, card_2,card_3)
         
