@@ -56,7 +56,7 @@ class Player(Entity):
         self.shotspd = shotspd
         self._cad_counter = cad
 
-    def upgrade_might(self, upgrade_type):
+    def upgrade_might(self, upgrade_type: dict):
         """Upgrade weapon stats. Called from ShopManager when Shopping Upgrades."""
         if upgrade_type["text"] == "Range":
             self.rng += upgrade_type["value"]
@@ -71,7 +71,7 @@ class Player(Entity):
             self.shotspd += (upgrade_type["value"] *  self.shotspd)
             print(str(self.shotspd))
     
-    def power_up_might(self, duration):
+    def power_up_might(self, duration: int):
         """Upgrade weapon stats. Called from main when collecting Obstacle."""
         self.rng += self.rng_power_up
         self.dmg += self.dmg_power_up

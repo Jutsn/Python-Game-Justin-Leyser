@@ -42,6 +42,7 @@ class Entity:
         self.pos = pygame.Vector2(x, y)
         self.dir = pygame.Vector2(dx, dy)
         self.hp = hp
+        self.max_hp = hp
         self.anim_speed = anim_speed
         self.anim_speed_var = anim_speed  # C++ initializes to anim_speed, counts down
         self.anim_pos = 0

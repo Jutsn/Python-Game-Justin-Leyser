@@ -45,15 +45,23 @@ def main():
     game_state = play_state
     
     # ------------------------------------------------------------------ #
-    #  Setup — create player and load level (ofApp::setup)   #
+    #  Setup — create player, load level, set background music                                   #
     # ------------------------------------------------------------------ #
     player: Player
     level: Level
-    level_index = 1
-    
-    # Start Level 1
-    def start_run():
+    level_index: int
+    def start_new_game():
         nonlocal  player, level, level_index
+
+        player = create_player()
+
+        level_index = 1
+        level = load_level(level_index)
+
+        reset_ui()
+        load_background_music_of_level()
+
+    def create_player() -> Player:
         player = Player()
         player.setup(
                         x=SCREEN_WIDTH // 2,           # Center of screen
@@ -66,15 +74,12 @@ def main():
                         )
         
         player.set_might(rng=200, dmg=1, cad=55, shotspd=2)
-        level_index = 1
-        level = Level()
-        level.load("lvl001.rfg")
-
+        return player
+    def reset_ui():
         ui_manager.update_player_health_ui(player.hp)
         score_manager.reset_score()
         money_manager.reset_money()
-
-        # Set background music
+    def load_background_music_of_level():
         m_path = os.path.join(ASSET_DIR, level.music_name)
         try:
             background_music = pygame.mixer.music.load(m_path)
@@ -84,21 +89,35 @@ def main():
             pygame.mixer.music.play(-1)
         except pygame.error:
                 print(f"Warning: could not load music {m_path}")
+    # ------------------------------------------------------------------ #
+    # Level Progression
+    # ------------------------------------------------------------------ #
+    # Loads specific level by Index
+    def load_level(level_index: int) -> Level:
+        level = Level()
+        path = os.path.join("lvl00" + str(level_index) + ".rfg")
+        level.load(path)
+        return level
     # Check If Next Level-File exists
-    def check_for_next_level():
-        path = os.path.join(ASSET_DIR, "lvl00" + str(level_index + 1) + ".rfg")
+    def check_for_next_level() -> bool:
+        next_level = level_index + 1
+        path = os.path.join(ASSET_DIR, "lvl00" + str(next_level) + ".rfg")
         return os.path.exists(path)
     # Proceed with next level
     def start_next_level():
         nonlocal level, level_index
         level_index += 1
-        path = os.path.join("lvl00" + str(level_index) + ".rfg")
-        level = Level()
-        level.load(path)
-    #  Input 
-    mouse_clicked = False
+        level = load_level(level_index)
+        load_background_music_of_level()
+
+    
+    # ------------------------------------------------------------------ #
+    #  Input                                                             #
+    # ------------------------------------------------------------------ #
     def handle_input():
-        nonlocal running, mouse_clicked
+        running = True
+        mouse_clicked = False
+
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
@@ -112,10 +131,15 @@ def main():
                 if event.button == 1:
                     mouse_clicked = True    
             else: mouse_clicked = False
-    #  Update
+
+        return running, mouse_clicked
+    # ------------------------------------------------------------------ #
+    #  Update                                                            #
+    # ------------------------------------------------------------------ #
     def update():
         nonlocal game_state, play_state, win_state, shop_state, game_over_state
         if game_state == play_state:
+           ui_manager.clear_boss_health_bars() 
            player.step()
            level.step()
 
@@ -154,14 +178,14 @@ def main():
         if game_state == game_over_state:
             # Restart Game
             if mouse_clicked:
-                start_run()
+                start_new_game()
                 game_state = play_state
         
         # Game Won
         if game_state == win_state:
             # Restart Game
             if mouse_clicked:
-                start_run()
+                start_new_game()
                 game_state = play_state
         
         # Shop State
@@ -178,7 +202,9 @@ def main():
                 shop_manager.reset_shop()
                 start_next_level()
                 game_state = play_state
-    # Render
+    # ------------------------------------------------------------------ #
+    #  Render                                                           #
+    # ------------------------------------------------------------------ #
     def render():
          screen.fill(BLACK)
 
@@ -188,6 +214,9 @@ def main():
          # TODO: Draw enemies
          for enemy in level.enemies:
              enemy.draw(screen)
+             if enemy.max_hp > 1:
+                ui_manager.register_boss_health_bar(enemy)
+
          # TODO: Draw obstacles
          for obs in level.obstacles:
              obs.draw(screen)
@@ -202,22 +231,15 @@ def main():
          clock.tick(FPS)
 
     # ------------------------------------------------------------------ #
-    # Start Run
-    # ------------------------------------------------------------------ #
-    start_run()
-
-    # ------------------------------------------------------------------ #
     #  Game loop                                                         #
     # ------------------------------------------------------------------ #
+    start_new_game()
     running = True
     while running:
-        handle_input()
+        running, mouse_clicked = handle_input()
         update()
         render()
-                       
-    # ------------------------------------------------------------------ #
-    #  Cleanup                                                           #
-    # ------------------------------------------------------------------ #
+
     pygame.quit()
 
 

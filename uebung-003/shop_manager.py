@@ -31,9 +31,8 @@ def set_shop_offer(player):
         card_3 = shop_offer[2]
         card_3["cost"] = random.randrange(20,25)
         #update UI
-        ui_manager.update_item_cards_ui(card_1, card_2,card_3)
+        ui_manager.update_item_cards_ui(card_1, card_2, card_3)
         
-
 def check_for_interaction(mouse_pos):
     # Check for mouse collision
     for rect in ui_manager.card_rects:
@@ -42,7 +41,7 @@ def check_for_interaction(mouse_pos):
             rect_index = ui_manager.card_rects.index(rect)
             try_buy_upgrade(shop_offer[rect_index])
     
-def try_buy_upgrade(upgrade_type):
+def try_buy_upgrade(upgrade_type: dict):
     global upgrade_bought
     if money_manager.get_current_money() >= upgrade_type["cost"]:
         upgrade_bought = True

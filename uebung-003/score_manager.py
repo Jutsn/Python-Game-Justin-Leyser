@@ -5,7 +5,7 @@ score = 0
 highscore = 0
 
 
-def add_score(points):
+def add_score(points: int):
 	global score
 	score += points
 	ui_manager.update_score_ui(score)

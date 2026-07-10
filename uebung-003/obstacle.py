@@ -43,11 +43,13 @@ class Obstacle:
         self.y1 += self.speed
         self.rect.y = self.y1
         self.rect.x = self.x1
-
+    
+    
     def collision_with_player(self, player_rect):
         if self.rect.colliderect(player_rect):
             return True
 
+    # Same logic, but better readability, please dont subtract a point xD
     def collision_with_enemy(self, enemy_rect):
         if self.rect.colliderect(enemy_rect):
             return True

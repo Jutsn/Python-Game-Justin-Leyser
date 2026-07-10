@@ -61,7 +61,7 @@
 # "W": Describes the pixel width.
 
 
-L T(3) B(background1.png) M(Battle in the Stars) D(1550)
+L T(3) B(background1.png) M(Space Heroes) D(1550)
 
 E B(1) D(1) H(10) S(1) A(comet_boss) N(1) T(1) P(-200)
 E B(1) D(1) H(10) S(1) A(comet_boss) N(1) T(2) P(-700)
